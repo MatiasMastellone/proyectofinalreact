@@ -1,0 +1,36 @@
+   [{
+      "id":1,
+      "title": "Baguales",
+      "description": "Cerveza Berlina Rubia suave",
+      "price": 595,
+      "category": "blonde",
+      "pictureURL": "https://tap-pencyinfra-prod.s3.amazonaws.com/cervakoh/1687562860921.jpg",
+      "stock":6
+    },
+    {
+      "id": 2,
+      "title": "Equilibrio BrewHouse",
+      "description": "La nueva a IPA de BH es refrescante!",
+      "price": 1625,
+      "category": "IPA",
+      "pictureURL": "https://tap-pencyinfra-prod.s3.amazonaws.com/cervakoh/1683502841059.jpg",
+      "stock":6
+    },
+    {
+      "id": 3,
+      "title": "Que miras bobo?",
+      "description": " IPA 🇦🇷100% Argenta! Edición Limitada.",
+      "price": 1625,
+      "category": "IPA",
+      "pictureURL": "https://tap-pencyinfra-prod.s3.amazonaws.com/cervakoh/1683503047757.jpg",
+      "stock":6
+    },
+    {
+      "id": 4,
+      "title": "Imperial Porter",
+      "description": "SUR DEL SUR/BA - Imperial Porter (Collab. Salmón Birra)",
+      "price": 1450,
+      "category": "porter",
+      "pictureURL": "https://tap-pencyinfra-prod.s3.amazonaws.com/cervakoh/1682140407706.jpg",
+      "stock":6
+    }]
