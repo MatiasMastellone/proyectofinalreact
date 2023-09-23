@@ -4,6 +4,7 @@ import data from '../Data/product.json';
 import Container from "react-bootstrap/Container";
 import {ItemDetail} from './ItemDetail.jsx';
 import { useParams } from 'react-router-dom';
+import {getFirestore, getDocs, collection} from 'firebase/firestore';
 
 
 export const ItemDetailContainer = (props) => {
@@ -14,14 +15,24 @@ export const ItemDetailContainer = (props) => {
 
 	useEffect(() =>{
 
-		const getItem = new Promise((resolve, reject)=>{
-			setTimeout(()=>{
-				const productById = data.find((product)=>product.id === parseInt(id));
-				resolve(productById)
-			},2000)
-		});
+		const db = getFirestore();
+		const refCollection = collection(db,"Items")
 
-		getItem.then((data) => setProduct(data));
+		getDocs(refCollection).then((result)=>{
+			if(result.size !== 0){
+				setProduct(result.docs.map((data)=>{return{id:data.id,...data.data()}}))
+			}
+		})
+
+
+		// const getItem = new Promise((resolve, reject)=>{
+		// 	setTimeout(()=>{
+		// 		const productById = data.find((product)=>product.id === parseInt(id));
+		// 		resolve(productById)
+		// 	},2000)
+		// });
+
+		// getItem.then((data) => setProduct(data));
 
 	},[])
 

@@ -4,6 +4,19 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap/dist/css/bootstrap.min.css'
+import { initializeApp } from "firebase/app";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyDS7c5jbUB0vPmIVF14Umvonm0yuHrT5uM",
+  authDomain: "coder-maste.firebaseapp.com",
+  projectId: "coder-maste",
+  storageBucket: "coder-maste.appspot.com",
+  messagingSenderId: "860334933242",
+  appId: "1:860334933242:web:9dcf6f5e29d0bd59d8b543"
+};
+
+// Initialize Firebase
+initializeApp(firebaseConfig);
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
