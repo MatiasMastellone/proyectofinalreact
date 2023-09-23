@@ -26,8 +26,6 @@ export const ItemListContainer = (props) => {
 
 					setProducts(productList.filter((dt)=>dt.category===id));
 
-
-
 				}
 				
 			}
