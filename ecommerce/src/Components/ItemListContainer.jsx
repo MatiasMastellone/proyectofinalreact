@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import data from '../Data/product.json';
 import Container from "react-bootstrap/Container";
 import {ItemList} from './ItemList.jsx';
 import { useParams } from 'react-router-dom';
@@ -20,26 +19,20 @@ export const ItemListContainer = (props) => {
 
 		getDocs(refCollection).then((result)=>{
 			if(result.size !== 0){
-				setProducts(result.docs.map((data)=>{return{id:data.id,...data.data()}}))
+				if(!id){
+					setProducts(result.docs.map((data)=>{return{id:data.id,...data.data()}}))
+				}else{
+					const productList=result.docs.map((data)=>{return{id:data.id,...data.data()}})
+
+					setProducts(productList.filter((dt)=>dt.category===id));
+
+
+
+				}
+				
 			}
 		})
-
-		// const promise = new Promise((resolve, reject)=>{
-		// 	setTimeout(()=>resolve(data),2000)
-		// });
-
-		// promise.then((data) => {
-		// 	if(!id){
-		// 	setProducts(data)
-		// 	}else {
-		// 		const productFilter = data.filter((product)=> product.category === id);
-				
-		// 		setProducts(productFilter);
-		// 	}
-
 		
-		// });
-
 	},[id])
 
 	return (

@@ -1,6 +1,6 @@
 import { CartWidget } from "./CartWidget.jsx";
 import {Logo} from "./Logo.jsx";
-import { Link, NavLink } from "react-router-dom"
+import { Link} from "react-router-dom"
 import Container from "react-bootstrap/Container"
 import Navbar from "react-bootstrap/Navbar"
 import Nav from "react-bootstrap/Nav"
