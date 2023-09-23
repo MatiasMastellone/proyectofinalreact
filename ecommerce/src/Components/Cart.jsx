@@ -1,7 +1,7 @@
 import { useContext, useState } from "react";
 import { CartContext } from "../Contexts/CartContext";
 import Table from "react-bootstrap/Table";
-import { Form, Link } from "react-router-dom";
+import {Link } from "react-router-dom";
 import Container from "react-bootstrap/esm/Container";
 import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
@@ -25,17 +25,21 @@ export const Cart = () => {
 
   const length = cart.length;
 
+  const handleFormValue = (ev)=>{
+    setFormValues(prev => ({...prev,[ev.target.name]:ev.target.value}))    
+  }
+
   const sendOrder = ()=>{
     const db = getFirestore();
-    const orderCollection = collection(db, "orders");
+    const orderCollection = collection(db, "Orders");
 
     let order = {
       buyer: formValues,
       items: cart.map((it) => ({
         id: it.id,
-        title: id.title,
-        quantity: id.quantity,
-        price: id.price,
+        title: it.title,
+        quantity: it.quantity,
+        price: it.price,
       })),
       total: totalAmount,
       date: serverTimestamp(),
@@ -43,13 +47,13 @@ export const Cart = () => {
 
     addDoc(orderCollection,order).then(({id}) =>{
       if(id){
+        alert("Your order"+id+"was created successfully");
         setFormValues({
           name: "",
           email: "",
           phone: "",
         })
-        clearCart();
-        alert("Your order"+id+"was created successfully");
+        clearCart();        
       }
     })
   }
@@ -97,28 +101,25 @@ export const Cart = () => {
       <Container>
         <h2>Complete the information to check out your order</h2>
         <Form>
-          <Form.Group className="mb-3" controlId="formBasicName">
+          <Form.Group className="mb-3" controlId="name">
+            <Form.Label>Full name</Form.Label>
+            <Form.Control onChange={handleFormValue} value={formValues.name} type="text" placeholder="Enter your full name" name="name"/>
+          </Form.Group>
+          <Form.Group className="mb-3" controlId="email">
             <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
+            <Form.Control onChange={handleFormValue} value={formValues.email} type="email" placeholder="Enter your email" name="email" />
             <Form.Text className="text-muted">
               We'll never share your email with anyone else.
             </Form.Text>
           </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicEmail">
-            <Form.Label>Email address</Form.Label>
-            <Form.Control type="email" placeholder="Enter email" />
-            <Form.Text className="text-muted">
-              We'll never share your email with anyone else.
-            </Form.Text>
-          </Form.Group>
-          <Form.Group className="mb-3" controlId="formBasicPassword">
-            <Form.Label>Password</Form.Label>
-            <Form.Control type="password" placeholder="Phone Number" />
-          </Form.Group>
-          <Button variant="primary" type="submit">
-            Submit
-          </Button>
+          <Form.Group className="mb-3" controlId="phone">
+            <Form.Label>Phone number</Form.Label>
+            <Form.Control onChange={handleFormValue} value={formValues.phone} type="text" placeholder="+5411955556666" name="phone" />
+          </Form.Group>         
         </Form>
+        <button onClick={sendOrder}>
+            Check out order
+          </button>
       </Container>
     </>
   );
