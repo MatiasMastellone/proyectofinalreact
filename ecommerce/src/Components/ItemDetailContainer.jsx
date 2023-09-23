@@ -1,6 +1,5 @@
 
 import { useState, useEffect } from 'react';
-import data from '../Data/product.json';
 import Container from "react-bootstrap/Container";
 import {ItemDetail} from './ItemDetail.jsx';
 import { useParams } from 'react-router-dom';
